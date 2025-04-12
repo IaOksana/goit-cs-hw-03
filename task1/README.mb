@@ -1,0 +1,90 @@
+# Task Management CLI
+
+A command-line interface (CLI) application for managing users and their tasks stored in a PostgreSQL database.
+
+## Features
+
+*   Connects to a PostgreSQL database.
+*   Provides commands to:
+    *   View tasks by user ID.
+    *   View tasks by status.
+    *   Update the status of a task.
+    *   Find users who have no tasks.
+    *   Add a new task for a user.
+    *   View tasks that are not yet completed.
+    *   Delete a specific task by ID.
+    *   Find users by an email pattern (using LIKE).
+    *   Update a user's name.
+    *   Get a count of tasks grouped by status.
+    *   Get tasks assigned to users with a specific email domain.
+    *   Get tasks that have no description.
+    *   Get users and their tasks currently 'in progress'.
+    *   Get users and the count of tasks assigned to them.
+*   Uses `prompt_toolkit` for command input with auto-completion.
+*   Uses `prettytable` for formatted output.
+*   Includes scripts for database schema creation and seeding with fake data.
+
+## Prerequisites
+
+*   Python 3.x
+*   PostgreSQL server running
+*   `pip` (Python package installer)
+
+## Setup
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd <repository-directory>
+    ```
+
+2.  **Create a Virtual Environment (Recommended):**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
+
+3.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+    *(You'll need to create a `requirements.txt` file containing at least:)*
+    ```
+    psycopg2-binary
+    colorama
+    prettytable
+    prompt_toolkit
+    Faker
+    ```
+
+4.  **Configure Database Connection:**
+    *   Ensure your PostgreSQL server is running.
+    *   Update the connection details (host, port, database name, user, password) in `create_db.py`, `seed.py`, and `main.py` if they differ from the defaults (localhost:5433, db: task_1, user: postgres, pass: postgres).
+    *   Make sure the database (`task_1` by default) exists or that the user has permission to create it if `create_db.py` handles creation.
+
+5.  **Create Database Schema:**
+    *   Ensure you have the SQL schema file (e.g., `task_1.sql` referenced in `create_db.py`).
+    *   Run the creation script:
+        ```bash
+        python task_1/create_db.py
+        ```
+
+6.  **Seed Database (Optional):**
+    *   To populate the database with sample data:
+        ```bash
+        python task_1/seed.py
+        ```
+
+## Usage
+1. Create DB
+```bash
+python task_1/create_db.py
+
+2. Seed DB
+```bash
+python task_1/seed.py
+
+3. Run the main application script:
+
+```bash
+python task_1/main.py
